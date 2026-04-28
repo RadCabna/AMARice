@@ -1,21 +1,18 @@
-//
-//  ContentView.swift
-//  AmaRICE-Prioritizer
-//
-//  Created by Алкександр Степанов on 27.04.2026.
-//
-
 import SwiftUI
 
 struct ContentView: View {
+    @AppStorage("hasCompletedOnboarding") private var hasCompletedOnboarding = false
+
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationStack {
+            if hasCompletedOnboarding {
+                MainContainerView()
+            } else {
+                OnboardingView {
+                    hasCompletedOnboarding = true
+                }
+            }
         }
-        .padding()
     }
 }
 
