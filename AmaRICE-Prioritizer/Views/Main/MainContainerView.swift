@@ -3,6 +3,14 @@ import SwiftUI
 struct MainContainerView: View {
     @StateObject private var viewModel = MainContainerViewModel()
     @StateObject private var ideaStore = IdeaStoreViewModel()
+    
+    private var topHeaderHeight: CGFloat {
+        min(max(screenWidth * 0.14, 64), 84)
+    }
+    
+    private var topHeaderFontSize: CGFloat {
+        min(max(screenWidth * 0.055, 20), 28)
+    }
 
     var body: some View {
         ZStack {
@@ -21,16 +29,15 @@ struct MainContainerView: View {
                 }
             }
             .environmentObject(ideaStore)
-
-            VStack(spacing: 0) {
-                if viewModel.selectedTab == .menu1 {
-                    topHeader
-                }
-                Spacer()
-                BottomBarView(selectedTab: $viewModel.selectedTab)
-                    .padding(.bottom, screenHeight * 0.015)
+        }
+        .safeAreaInset(edge: .top, spacing: 0) {
+            if viewModel.selectedTab == .menu1 {
+                topHeader
             }
-            .ignoresSafeArea(edges: .top)
+        }
+        .safeAreaInset(edge: .bottom, spacing: 0) {
+            BottomBarView(selectedTab: $viewModel.selectedTab)
+                .padding(.bottom, screenHeight * 0.015)
         }
         .ignoresSafeArea(.keyboard, edges: .bottom)
         .navigationBarBackButtonHidden(true)
@@ -40,15 +47,16 @@ struct MainContainerView: View {
         VStack(spacing: 0) {
             HStack {
                 Text(viewModel.selectedTab == .menu1 ? "New Idea" : "Menu")
-                    .font(.outfitMedium(size: screenHeight * 0.025))
+                    .font(.outfitMedium(size: topHeaderFontSize))
                     .foregroundStyle(.black)
-                    .padding(.top, screenHeight * 0.012)
+                    .padding(.bottom)
                 Spacer()
             }
             .padding(.horizontal, screenHeight * 0.019)
-            .frame(height: screenHeight * 0.095, alignment: .bottom)
-            .padding(.vertical, screenHeight * 0.008)
+            .frame(height: topHeaderHeight, alignment: .bottom)
+            .padding(.bottom, screenHeight * 0.004)
             .background(.white)
+            .shadow(color: .black.opacity(0.09), radius: screenHeight * 0.005, x: 0, y: screenHeight * 0.003)
         }
     }
 }

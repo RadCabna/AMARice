@@ -10,7 +10,7 @@ struct SwipeIdeaCardRowView: View {
     @State private var dragStartOffset: CGFloat = 0
     @State private var isHorizontalDragActive = false
 
-    private var revealWidth: CGFloat { screenHeight * 0.18 }
+    private var revealWidth: CGFloat { screenWidth * 0.43 }
     private var settleThreshold: CGFloat { revealWidth * 0.45 }
 
     var body: some View {

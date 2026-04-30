@@ -28,7 +28,7 @@ struct MenuOneView: View {
                     saveButton(proxy: proxy)
                 }
                 .padding(.horizontal, screenHeight * 0.02)
-                .padding(.top, screenHeight * 0.06)
+                .padding(.top, screenHeight * 0.02)
                 .padding(.bottom, screenHeight * 0.13 + max(0, keyboardHeight - screenHeight * 0.04))
             }
         }

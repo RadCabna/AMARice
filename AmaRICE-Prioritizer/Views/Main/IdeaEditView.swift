@@ -65,6 +65,7 @@ struct IdeaEditView: View {
         .padding(.top, screenHeight * 0.0)
         .padding(.bottom, screenHeight * 0.02)
         .background(.white)
+        .shadow(color: .black.opacity(0.09), radius: screenHeight * 0.005, x: 0, y: screenHeight * 0.003)
     }
 
     private var firstSection: some View {

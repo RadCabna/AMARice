@@ -37,6 +37,7 @@ struct MenuThreeView: View {
         .frame(height: screenHeight * 0.027, alignment: .bottom)
         .padding(.vertical, screenHeight * 0.005)
         .background(.white)
+        .shadow(color: .black.opacity(0.09), radius: screenHeight * 0.005, x: 0, y: screenHeight * 0.003)
     }
 
     private var summaryCards: some View {
